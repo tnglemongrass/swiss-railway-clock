@@ -30,20 +30,24 @@ The `wiki(-refined)` versions have exactly the same proportions as the original,
 ## Usage
 
 There are two variants:
-1. Open the files from github directly, special links are [here](#how-to-show-from-github-directly)
-1. Clone this repo, open the `.html` file(s) locally
+1. Open the files from GitHub Pages, links [below](#how-to-show-from-github-directly)
+1. Clone this repo, open the file(s) in `./html/` locally
 
 ## How to show from GitHub directly
 
-Html files on github can be shown directly in a browser by prefixing with `https://html-preview.github.io/?url=`, e.g.
+These are deployed via GitHub Pages:
 
-- sonnet: https://html-preview.github.io/?url=https://raw.githubusercontent.com/tnglemongrass/swiss-railway-clock/main/sonnet.html
-- sonnet-refined: https://html-preview.github.io/?url=https://raw.githubusercontent.com/tnglemongrass/swiss-railway-clock/main/sonnet-refined.html
-- sonnet-refined2: https://html-preview.github.io/?url=https://raw.githubusercontent.com/tnglemongrass/swiss-railway-clock/main/sonnet-refined2.html
-- wiki-refined.html: https://html-preview.github.io/?url=https://raw.githubusercontent.com/tnglemongrass/swiss-railway-clock/main/wiki-refined.html
+- sonnet-refined: https://tnglemongrass.github.io/swiss-railway-clock/sonnet.html
+- sonnet-refined2: https://tnglemongrass.github.io/swiss-railway-clock/sonnet-refined.html
+- wiki-refined: https://tnglemongrass.github.io/swiss-railway-clock/wiki-refined.html
+
+## Development
+
+All files are located in `docs/` folder, to allow deployment via Github Pages.
 
 ## Links
 
 - https://cssanimation.rocks/clocks/
 - https://de.wikipedia.org/wiki/Schweizer_Bahnhofsuhr
+- https://de.wikipedia.org/wiki/Bahnhofsuhr
 - https://claude.ai/new
