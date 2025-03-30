@@ -19,6 +19,7 @@
         }
         body {
             padding: 0px;
+            transition: background-color 0.5s ease;
         }   
         .dial {
             stroke: #DDDDDD;
@@ -192,6 +193,8 @@
               minuteDurationCur = 0;
               hourDurationCur = 0;      
             }
+
+            updateBackgroundColor();
           
             updateHand(hourHand, hour, hourDurationCur, "easeLinear");
             updateHand(minuteHand, minute, minuteDurationCur, easeMinute);
@@ -200,6 +203,15 @@
             secondDurationCur = secondDuration;
             minuteDurationCur = minuteDuration;
             hourDurationCur = 1000;
+        }
+
+        function updateBackgroundColor() {
+            // Change background color when minutes are between 55 and 60
+            if (minute[0] >= 330 && minute[0] < 360) {
+                document.body.style.backgroundColor = '#FFD700'; // Friendly yellow
+            } else {
+                document.body.style.backgroundColor = '#121212'; // Default background
+            }
         }
 
         function createHand(data, className, points) {
