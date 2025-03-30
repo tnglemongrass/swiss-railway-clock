@@ -7,20 +7,24 @@
     <!-- found: https://codepen.io/jobe451/pen/rNWrqPw -->
      <!-- linked from: https://de.wikipedia.org/wiki/Schweizer_Bahnhofsuhr -->
     <style>
-        html, head {
+        html, body {
             padding: 0;
             margin: 0;
         }
+
         html {
             display: grid;
             place-items: center;
             width: 100%;
             height: 100%;
         }
+
         body {
             padding: 0px;
             transition: background-color 0.5s ease;
-        }   
+            background-color: #121212;
+        }
+
         .dial {
             stroke: #DDDDDD;
             fill: white;
@@ -51,6 +55,8 @@
         https://www.eguide.ch/en/objekt/sbb-bahnhofsuhr/
         https://www.eguide.ch/wp-content/uploads/2261/1508_CHD151_foto_b.jpg
         */
+
+        let isDarkMode = true;
 
         const diameter = Math.min(80 * window.innerWidth / 100, 80 * window.innerHeight / 100); //pixel
 
@@ -209,8 +215,10 @@
             // Change background color when minutes are between 55 and 60
             if (minute[0] >= 330 && minute[0] < 360) {
                 document.body.style.backgroundColor = '#FFD700'; // Friendly yellow
+            } else if ( isDarkMode === true) {
+                document.body.style.backgroundColor = '#121212';
             } else {
-                document.body.style.backgroundColor = '#121212'; // Default background
+                document.body.style.backgroundColor = '#FFFFFF';
             }
         }
 
@@ -246,7 +254,12 @@
             second[0] = secondsAngel < 360 ? secondsAngel : 0;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('html').addEventListener('dblclick', () => {
+            isDarkMode = !isDarkMode;
+            update();
+        })
+
+        document.addEventListener('DOMContentLoaded', () => {
             window.addEventListener('resize', function() {
                 window.location.reload();
             });
