@@ -2,7 +2,18 @@
 
 This is a collection of clocks with a short little stop at the top in html, similar to the famous swiss train station clock by Hans Hilfiker.
 
-## How to show directly from GitHub
+## Features
+
+Swiss train clocks have these 'unusual' features:
+
+- **Smooth movement** of the second handle
+- Second handle **stops at the top** for a while, moves the minute handle, and then continues (originally waiting for a 'minute impulse' from the master clock)
+
+Additionally, the `sonnet-refined1/2` versions **changes color 5 minutes before the hour ends**, from black to a friendly yellow. This should remind you that it's time to come to and end.
+
+The `wiki(-refined)` versions have exactly the same proportions as the original, but are under copyright.
+
+## How to show from GitHub directly
 
 Html files on github can be shown directly in a browser by prefixing with `https://html-preview.github.io/?url=`, e.g.
 
