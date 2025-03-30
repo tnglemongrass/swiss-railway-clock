@@ -1,231 +1,239 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swiss Train Clock</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        
-        .clock {
-            position: relative;
-            width: min(80vw, 80vh);
-            height: min(80vw, 80vh);
-            border-radius: 50%;
-            background-color: #1e1e1e;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .clock-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-        
-        .marker {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transform: rotate(var(--rotation));
-        }
-        
-        .marker::before {
-            content: '';
-            position: absolute;
-            background-color: #f0f0f0;
-            top: 5%;
-            left: 49.25%;
-            width: 1.5%;
-            height: 3%;
-            border-radius: 0;
-        }
-        
-        .hour-marker::before {
-            height: 8%;
-            width: 3%;
-            left: 48.5%;
-        }
-        
-        .hand {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform-origin: 50% 50%;
-            transform: translate(-50%, -50%) rotate(var(--rotation));
-            z-index: 10;
-        }
-        
-        .hour-hand {
-            width: 4%;
-            height: 35%;
-            background-color: #f0f0f0;
-            clip-path: polygon(40% 0%, 60% 0%, 55% 100%, 45% 100%);
-        }
-        
-        .minute-hand {
-            width: 3.5%;
-            height: 45%;
-            background-color: #f0f0f0;
-            clip-path: polygon(40% 0%, 60% 0%, 53% 100%, 47% 100%);
-        }
-        
-        .second-hand {
-            height: 50%;
-            z-index: 9;
-        }
-        
-        .second-hand-line {
-            position: absolute;
-            width: 1.2%;
-            height: 100%;
-            background-color: #ff0000;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        /* Red ball on second hand - at the outer end */
-        .second-ball {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: #ff0000;
-            border-radius: 50%;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .center-circle {
-            position: absolute;
-            width: 3%;
-            height: 3%;
-            background-color: #ff0000;
-            border-radius: 50%;
-            top: 48.5%;
-            left: 48.5%;
-            z-index: 11;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .clock {
+        position: relative;
+        width: min(80vw, 80vh);
+        height: min(80vw, 80vh);
+        border-radius: 50%;
+        background-color: #1e1e1e;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .clock-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+
+      .marker {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: rotate(var(--rotation));
+      }
+
+      .marker::before {
+        content: "";
+        position: absolute;
+        background-color: #f0f0f0;
+        top: 5%;
+        left: 49.25%;
+        width: 1.5%;
+        height: 3%;
+        border-radius: 0;
+      }
+
+      .hour-marker::before {
+        height: 8%;
+        width: 3%;
+        left: 48.5%;
+      }
+
+      .hand {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: 50% 50%;
+        transform: translate(-50%, -50%) rotate(var(--rotation));
+        z-index: 10;
+      }
+
+      .hour-hand {
+        width: 4%;
+        height: 35%;
+        background-color: #f0f0f0;
+        clip-path: polygon(40% 0%, 60% 0%, 55% 100%, 45% 100%);
+      }
+
+      .minute-hand {
+        width: 3.5%;
+        height: 45%;
+        background-color: #f0f0f0;
+        clip-path: polygon(40% 0%, 60% 0%, 53% 100%, 47% 100%);
+      }
+
+      .second-hand {
+        height: 50%;
+        z-index: 9;
+      }
+
+      .second-hand-line {
+        position: absolute;
+        width: 1.2%;
+        height: 100%;
+        background-color: #ff0000;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Red ball on second hand - at the outer end */
+      .second-ball {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: #ff0000;
+        border-radius: 50%;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .center-circle {
+        position: absolute;
+        width: 3%;
+        height: 3%;
+        background-color: #ff0000;
+        border-radius: 50%;
+        top: 48.5%;
+        left: 48.5%;
+        z-index: 11;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="clock">
-        <div class="clock-face">
-            <!-- Hour markers -->
-            <div class="marker hour-marker" style="--rotation: 0deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 30deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 60deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 90deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 120deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 150deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 180deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 210deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 240deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 270deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 300deg;"></div>
-            <div class="marker hour-marker" style="--rotation: 330deg;"></div>
-            
-            <!-- Minute markers -->
-            <div class="marker" style="--rotation: 6deg;"></div>
-            <div class="marker" style="--rotation: 12deg;"></div>
-            <div class="marker" style="--rotation: 18deg;"></div>
-            <div class="marker" style="--rotation: 24deg;"></div>
-            <div class="marker" style="--rotation: 36deg;"></div>
-            <div class="marker" style="--rotation: 42deg;"></div>
-            <div class="marker" style="--rotation: 48deg;"></div>
-            <div class="marker" style="--rotation: 54deg;"></div>
-            <div class="marker" style="--rotation: 66deg;"></div>
-            <div class="marker" style="--rotation: 72deg;"></div>
-            <div class="marker" style="--rotation: 78deg;"></div>
-            <div class="marker" style="--rotation: 84deg;"></div>
-            <div class="marker" style="--rotation: 96deg;"></div>
-            <div class="marker" style="--rotation: 102deg;"></div>
-            <div class="marker" style="--rotation: 108deg;"></div>
-            <div class="marker" style="--rotation: 114deg;"></div>
-            <div class="marker" style="--rotation: 126deg;"></div>
-            <div class="marker" style="--rotation: 132deg;"></div>
-            <div class="marker" style="--rotation: 138deg;"></div>
-            <div class="marker" style="--rotation: 144deg;"></div>
-            <div class="marker" style="--rotation: 156deg;"></div>
-            <div class="marker" style="--rotation: 162deg;"></div>
-            <div class="marker" style="--rotation: 168deg;"></div>
-            <div class="marker" style="--rotation: 174deg;"></div>
-            <div class="marker" style="--rotation: 186deg;"></div>
-            <div class="marker" style="--rotation: 192deg;"></div>
-            <div class="marker" style="--rotation: 198deg;"></div>
-            <div class="marker" style="--rotation: 204deg;"></div>
-            <div class="marker" style="--rotation: 216deg;"></div>
-            <div class="marker" style="--rotation: 222deg;"></div>
-            <div class="marker" style="--rotation: 228deg;"></div>
-            <div class="marker" style="--rotation: 234deg;"></div>
-            <div class="marker" style="--rotation: 246deg;"></div>
-            <div class="marker" style="--rotation: 252deg;"></div>
-            <div class="marker" style="--rotation: 258deg;"></div>
-            <div class="marker" style="--rotation: 264deg;"></div>
-            <div class="marker" style="--rotation: 276deg;"></div>
-            <div class="marker" style="--rotation: 282deg;"></div>
-            <div class="marker" style="--rotation: 288deg;"></div>
-            <div class="marker" style="--rotation: 294deg;"></div>
-            <div class="marker" style="--rotation: 306deg;"></div>
-            <div class="marker" style="--rotation: 312deg;"></div>
-            <div class="marker" style="--rotation: 318deg;"></div>
-            <div class="marker" style="--rotation: 324deg;"></div>
-            <div class="marker" style="--rotation: 336deg;"></div>
-            <div class="marker" style="--rotation: 342deg;"></div>
-            <div class="marker" style="--rotation: 348deg;"></div>
-            <div class="marker" style="--rotation: 354deg;"></div>
-            
-            <div class="hand hour-hand" id="hour-hand"></div>
-            <div class="hand minute-hand" id="minute-hand"></div>
-            <div class="hand second-hand" id="second-hand">
-                <div class="second-hand-line"></div>
-                <div class="second-ball"></div>
-            </div>
-            <div class="center-circle"></div>
+      <div class="clock-face">
+        <!-- Hour markers -->
+        <div class="marker hour-marker" style="--rotation: 0deg"></div>
+        <div class="marker hour-marker" style="--rotation: 30deg"></div>
+        <div class="marker hour-marker" style="--rotation: 60deg"></div>
+        <div class="marker hour-marker" style="--rotation: 90deg"></div>
+        <div class="marker hour-marker" style="--rotation: 120deg"></div>
+        <div class="marker hour-marker" style="--rotation: 150deg"></div>
+        <div class="marker hour-marker" style="--rotation: 180deg"></div>
+        <div class="marker hour-marker" style="--rotation: 210deg"></div>
+        <div class="marker hour-marker" style="--rotation: 240deg"></div>
+        <div class="marker hour-marker" style="--rotation: 270deg"></div>
+        <div class="marker hour-marker" style="--rotation: 300deg"></div>
+        <div class="marker hour-marker" style="--rotation: 330deg"></div>
+
+        <!-- Minute markers -->
+        <div class="marker" style="--rotation: 6deg"></div>
+        <div class="marker" style="--rotation: 12deg"></div>
+        <div class="marker" style="--rotation: 18deg"></div>
+        <div class="marker" style="--rotation: 24deg"></div>
+        <div class="marker" style="--rotation: 36deg"></div>
+        <div class="marker" style="--rotation: 42deg"></div>
+        <div class="marker" style="--rotation: 48deg"></div>
+        <div class="marker" style="--rotation: 54deg"></div>
+        <div class="marker" style="--rotation: 66deg"></div>
+        <div class="marker" style="--rotation: 72deg"></div>
+        <div class="marker" style="--rotation: 78deg"></div>
+        <div class="marker" style="--rotation: 84deg"></div>
+        <div class="marker" style="--rotation: 96deg"></div>
+        <div class="marker" style="--rotation: 102deg"></div>
+        <div class="marker" style="--rotation: 108deg"></div>
+        <div class="marker" style="--rotation: 114deg"></div>
+        <div class="marker" style="--rotation: 126deg"></div>
+        <div class="marker" style="--rotation: 132deg"></div>
+        <div class="marker" style="--rotation: 138deg"></div>
+        <div class="marker" style="--rotation: 144deg"></div>
+        <div class="marker" style="--rotation: 156deg"></div>
+        <div class="marker" style="--rotation: 162deg"></div>
+        <div class="marker" style="--rotation: 168deg"></div>
+        <div class="marker" style="--rotation: 174deg"></div>
+        <div class="marker" style="--rotation: 186deg"></div>
+        <div class="marker" style="--rotation: 192deg"></div>
+        <div class="marker" style="--rotation: 198deg"></div>
+        <div class="marker" style="--rotation: 204deg"></div>
+        <div class="marker" style="--rotation: 216deg"></div>
+        <div class="marker" style="--rotation: 222deg"></div>
+        <div class="marker" style="--rotation: 228deg"></div>
+        <div class="marker" style="--rotation: 234deg"></div>
+        <div class="marker" style="--rotation: 246deg"></div>
+        <div class="marker" style="--rotation: 252deg"></div>
+        <div class="marker" style="--rotation: 258deg"></div>
+        <div class="marker" style="--rotation: 264deg"></div>
+        <div class="marker" style="--rotation: 276deg"></div>
+        <div class="marker" style="--rotation: 282deg"></div>
+        <div class="marker" style="--rotation: 288deg"></div>
+        <div class="marker" style="--rotation: 294deg"></div>
+        <div class="marker" style="--rotation: 306deg"></div>
+        <div class="marker" style="--rotation: 312deg"></div>
+        <div class="marker" style="--rotation: 318deg"></div>
+        <div class="marker" style="--rotation: 324deg"></div>
+        <div class="marker" style="--rotation: 336deg"></div>
+        <div class="marker" style="--rotation: 342deg"></div>
+        <div class="marker" style="--rotation: 348deg"></div>
+        <div class="marker" style="--rotation: 354deg"></div>
+
+        <div class="hand hour-hand" id="hour-hand"></div>
+        <div class="hand minute-hand" id="minute-hand"></div>
+        <div class="hand second-hand" id="second-hand">
+          <div class="second-hand-line"></div>
+          <div class="second-ball"></div>
         </div>
+        <div class="center-circle"></div>
+      </div>
     </div>
 
     <script>
-        function updateClock() {
-            const now = new Date();
-            
-            // Get hours, minutes, seconds with millisecond precision
-            const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
-            const minutes = now.getMinutes() + seconds / 60;
-            const hours = (now.getHours() % 12) + minutes / 60;
-            
-            // Calculate rotation angles
-            const hourRotation = hours * 30; // 12 hours = 360 degrees
-            const minuteRotation = minutes * 6; // 60 minutes = 360 degrees
-            const secondRotation = seconds * 6; // 60 seconds = 360 degrees
-            
-            // Apply rotations
-            document.getElementById('hour-hand').style.setProperty('--rotation', `${hourRotation}deg`);
-            document.getElementById('minute-hand').style.setProperty('--rotation', `${minuteRotation}deg`);
-            document.getElementById('second-hand').style.setProperty('--rotation', `${secondRotation}deg`);
-            
-            // Swiss railway clock second hand behavior: 
-            // Completes a full rotation in 58.5 seconds, then waits 1.5 seconds at the top
-            if (seconds >= 58.5 && seconds < 60) {
-                // Hold the second hand at the top position
-                document.getElementById('second-hand').style.setProperty('--rotation', '0deg');
-                setTimeout(updateClock, 16); // Still update but less frequently
-            } else {
-                requestAnimationFrame(updateClock);
-            }
+      function updateClock() {
+        const now = new Date();
+
+        // Get hours, minutes, seconds with millisecond precision
+        const seconds = now.getSeconds() + now.getMilliseconds() / 1000;
+        const minutes = now.getMinutes() + seconds / 60;
+        const hours = (now.getHours() % 12) + minutes / 60;
+
+        // Calculate rotation angles
+        const hourRotation = hours * 30; // 12 hours = 360 degrees
+        const minuteRotation = minutes * 6; // 60 minutes = 360 degrees
+        const secondRotation = seconds * 6; // 60 seconds = 360 degrees
+
+        // Apply rotations
+        document
+          .getElementById("hour-hand")
+          .style.setProperty("--rotation", `${hourRotation}deg`);
+        document
+          .getElementById("minute-hand")
+          .style.setProperty("--rotation", `${minuteRotation}deg`);
+        document
+          .getElementById("second-hand")
+          .style.setProperty("--rotation", `${secondRotation}deg`);
+
+        // Swiss railway clock second hand behavior:
+        // Completes a full rotation in 58.5 seconds, then waits 1.5 seconds at the top
+        if (seconds >= 58.5 && seconds < 60) {
+          // Hold the second hand at the top position
+          document
+            .getElementById("second-hand")
+            .style.setProperty("--rotation", "0deg");
+          setTimeout(updateClock, 16); // Still update but less frequently
+        } else {
+          requestAnimationFrame(updateClock);
         }
-        
-        // Start the clock
-        updateClock();
+      }
+
+      // Start the clock
+      updateClock();
     </script>
-</body>
+  </body>
 </html>
