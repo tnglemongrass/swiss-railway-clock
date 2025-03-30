@@ -10,6 +10,9 @@ sonnet-refined:
 sonnet-refined2 (red ball on second handle):
 ![Screenshot](media/sonnet-refined2.png)
 
+sonnet-refined2 (indicating < 5 minutes left to the full hour):
+![Screenshot](media/sonnet-refined2-time-left.png)
+
 wiki-refined (original proportions, from a linked codepen on wikipedia):
 ![Screenshot](media/wiki-refined.png)
 
@@ -23,6 +26,12 @@ Swiss train clocks have these 'unusual' features:
 Additionally, the `sonnet-refined1/2` versions **changes color 5 minutes before the hour ends**, from black to a friendly yellow. This should remind you that it's time to come to and end.
 
 The `wiki(-refined)` versions have exactly the same proportions as the original, but are under copyright.
+
+## Usage
+
+There are two variants:
+1. Open the files from github directly, special links are [here](#how-to-show-from-github-directly)
+1. Clone this repo, open the `.html` file(s) locally
 
 ## How to show from GitHub directly
 
