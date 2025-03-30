@@ -2,6 +2,17 @@
 
 This is a collection of clocks with a short little stop at the top in html, similar to the famous swiss train station clock by Hans Hilfiker.
 
+## Screenshots
+
+sonnet-refined:
+![Screenshot](media/sonnet-refined.png)
+
+sonnet-refined2 (red ball on second handle):
+![Screenshot](media/sonnet-refined2.png)
+
+wiki-refined (original proportions, from a linked codepen on wikipedia):
+![Screenshot](media/wiki-refined.png)
+
 ## Features
 
 Swiss train clocks have these 'unusual' features:
