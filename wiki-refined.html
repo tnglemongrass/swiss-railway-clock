@@ -51,7 +51,7 @@
         https://www.eguide.ch/wp-content/uploads/2261/1508_CHD151_foto_b.jpg
         */
 
-        const diameter = 400; //pixel
+        const diameter = Math.min(80 * window.innerWidth / 100, 80 * window.innerHeight / 100); //pixel
 
         const a = diameter / 100;
         const minW       = 1.4;    // multiple of a
@@ -233,6 +233,12 @@
             let secondsAngel = (now.getSeconds()+1) * 6.10169;
             second[0] = secondsAngel < 360 ? secondsAngel : 0;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('resize', function() {
+                window.location.reload();
+            });
+        });
     </script>
 </body>
 </html>
