@@ -230,7 +230,13 @@
         .attr("r", (secondDiam * a) / 2);
 
       update();
-      setInterval(update, 1000);
+
+      // updates should happend aligned to the full second
+      const initialDelay = 1000 - now.getMilliseconds();
+      setTimeout(() => {
+        update();
+        setInterval(update, 1000);
+      }, initialDelay);
 
       function update() {
         setTime(now);

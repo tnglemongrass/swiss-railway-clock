@@ -25,7 +25,7 @@ Swiss train clocks have these 'unusual' features:
 
 Additionally, the `sonnet-refined1/2` versions **changes color 5 minutes before the hour ends**, from black to a friendly yellow. This should remind you that it's time to come to and end.
 
-The `wiki(-refined)` versions have exactly the same proportions as the original, but are under copyright.
+The `wiki(-refined)` versions have exactly the same proportions as the original, but are under copyright. They also **change colors 5 minutes before**, and additionally **aligns updates** to the full second of the system clock.
 
 ## Usage
 
