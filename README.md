@@ -27,6 +27,8 @@ Additionally, the `sonnet-refined1/2` versions **changes color 5 minutes before 
 
 The `wiki(-refined)` versions have exactly the same proportions as the original, but are under copyright. They also **change colors 5 minutes before**, and additionally **aligns updates** to the full second of the system clock.
 
+All clocks show system time, except `wiki-refined2` which uses network time from cloudflare.
+
 ## Usage
 
 There are two variants:
@@ -40,6 +42,7 @@ These are deployed via GitHub Pages:
 - sonnet-refined: https://tnglemongrass.github.io/swiss-railway-clock/sonnet.html
 - sonnet-refined2: https://tnglemongrass.github.io/swiss-railway-clock/sonnet-refined.html
 - wiki-refined: https://tnglemongrass.github.io/swiss-railway-clock/wiki-refined.html
+- wiki-refined2: https://tnglemongrass.github.io/swiss-railway-clock/wiki-refined2.html
 
 ## Development
 
