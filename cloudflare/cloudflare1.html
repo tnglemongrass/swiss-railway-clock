@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cloudflare-Zeitabgleich</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .time-block {
+        margin: 15px 0;
+      }
+      .difference {
+        color: #2c3e50;
+        font-weight: bold;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cloudflare-Zeit vs. Systemzeit</h1>
+    <button onclick="updateTime()">Aktualisieren</button>
+    <div class="time-block" id="serverTime">
+      Cloudflare-Zeit: Wird geladen...
+    </div>
+    <div class="time-block" id="systemTime">
+      Systemzeit: <span class="time"></span>
+    </div>
+    <div class="time-block difference" id="difference">
+      Differenz: <span class="diff"></span> ms
+    </div>
+    <div id="error" class="error"></div>
+
+    <script>
+      async function getCloudflareTime() {
+        const response = await fetch(
+          "https://www.cloudflare.com/cdn-cgi/trace"
+        );
+        const text = await response.text();
+        const tsLine = text.split("\n").find((line) => line.startsWith("ts="));
+        const timestamp = parseFloat(tsLine.split("=")[1]);
+        return new Date(timestamp * 1000);
+      }
+
+      async function updateTime() {
+        try {
+          const serverTime = await getCloudflareTime();
+          const systemTime = new Date();
+          const diff = systemTime - serverTime;
+
+          document.getElementById(
+            "serverTime"
+          ).textContent = `Cloudflare-Zeit (UTC): ${serverTime.toISOString()}`;
+          document.querySelector("#systemTime .time").textContent =
+            systemTime.toISOString();
+          document.querySelector(
+            "#difference .diff"
+          ).textContent = `${Math.round(diff)} ms`;
+        } catch (error) {
+          document.getElementById(
+            "error"
+          ).textContent = `Fehler: ${error.message}`;
+        }
+      }
+
+      updateTime();
+    </script>
+  </body>
+</html>
