@@ -325,18 +325,35 @@
 
       async function syncWithCloudflare() {
         try {
-          const start = performance.now();
-          const response = await fetch(
-            "https://www.cloudflare.com/cdn-cgi/trace"
-          );
-          const text = await response.text();
-          const latency = performance.now() - start;
-          const tsLine = text
-            .split("\n")
-            .find((line) => line.startsWith("ts="));
-          const serverTimestamp = parseFloat(tsLine.split("=")[1]) * 1000;
-          const localTime = Date.now();
-          diffToServer = serverTimestamp - localTime + latency / 2;
+          console.log("Syncing with cloudflare...");
+          // Take the one with the lowest latency to provide accurate time
+          let lowestLatency = Infinity;
+          for (let i = 0; i < 5; i++) {
+            const localTimeStamp = Date.now();
+
+            const start = performance.now();
+            const response = await fetch(
+              "https://www.cloudflare.com/cdn-cgi/trace"
+            );
+            const latency = performance.now() - start;
+
+            const text = await response.text();
+            const tsLine = text
+              .split("\n")
+              .find((line) => line.startsWith("ts="));
+            const serverTimestamp = parseFloat(tsLine.split("=")[1]) * 1000;
+
+            const currentDiffToServer =
+              serverTimestamp - (localTimeStamp + latency / 2);
+            console.log(
+              `Latency: ${latency}ms, DiffToServer: ${currentDiffToServer}ms`
+            );
+
+            if (latency < lowestLatency) {
+              lowestLatency = latency;
+              diffToServer = currentDiffToServer;
+            }
+          }
         } catch (error) {
           document.getElementById(
             "error"
