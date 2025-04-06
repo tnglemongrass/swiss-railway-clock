@@ -234,19 +234,18 @@
 
       (async () => {
         await syncWithCloudflare();
-
-        update();
+        updateUi();
 
         // updates should happend aligned to the full second
         const initialDelay = 1000 - now.getMilliseconds();
         setTimeout(() => {
-          update();
-          setInterval(update, 1000);
+          updateUi();
+          setInterval(updateUi, 1000);
         }, initialDelay);
         setInterval(syncWithCloudflare, 60000);
       })();
 
-      function update() {
+      function updateUi() {
         setTime(now);
 
         // sometimes browser stop scripts when tab is in background
@@ -364,7 +363,7 @@
 
       document.querySelector("html").addEventListener("dblclick", () => {
         isDarkMode = !isDarkMode;
-        update();
+        updateUi();
       });
     </script>
   </body>
