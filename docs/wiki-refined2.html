@@ -319,8 +319,10 @@
           (360 / (12 * 60)) *
             ((now.getSeconds() + now.getMilliseconds() / 1000) / 60);
         minute[0] = now.getMinutes() * 6;
+        const degreesPerSecond = 6.10169;  // ~ 360 degree/59s
         let secondsAngel =
-          (now.getSeconds() + now.getMilliseconds() / 1000 + 1) * 6.10169;
+          (now.getSeconds() + now.getMilliseconds() / 1000 + 1) *
+          degreesPerSecond;
         second[0] = secondsAngel < 360 ? secondsAngel : 0;
       }
 
